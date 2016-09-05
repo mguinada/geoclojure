@@ -1,0 +1,11 @@
+/target
+/lib
+/classes
+/checkouts
+/resources/public/app/
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+.nrepl-history
+\#*\#
