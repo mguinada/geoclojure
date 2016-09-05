@@ -2,7 +2,9 @@
  :source-paths #{"src" "test"}
  :dependencies '[[adzerk/boot-reload "0.4.8" :scope "test"]
                  [adzerk/boot-test "1.1.1" :scope "test"]
-                 [metosin/boot-alt-test "0.1.2" :scope "test"]])
+                 [metosin/boot-alt-test "0.1.2" :scope "test"]
+                 [clj-http-lite "0.3.0" :scope "compile"]
+                 [cheshire "5.6.3" :scope "compile"]])
 
 (require
  '[boot.task.built-in          :refer [aot]]
@@ -33,12 +35,11 @@
        conj 'lighttable.nrepl.handler/lighttable-ops)
 
 ;; Tasks
-
 (deftask build []
-  (comp (speak)
-        (aot)))
+  (comp (aot)))
 
-(deftask run []
+(deftask dev
+  []
   (comp (watch)
         (repl)
         (reload)
@@ -53,12 +54,3 @@
   (comp
    (watch)
    (run-tests :autotest true)))
-
-(deftask development []
-  identity)
-
-(deftask dev
-  "Simple alias to run application in development mode"
-  []
-  (comp (development)
-        (run)))
