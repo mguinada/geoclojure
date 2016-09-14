@@ -3,12 +3,6 @@
             [cheshire.core :as json])
   (:import [java.net URLEncoder]))
 
-(def ^:private url "http://maps.googleapis.com/maps/api/geocode/json?address=")
-
-(defn- encode-query
-  [query]
-  (URLEncoder/encode query "UTF-8"))
-
 ;; result always has the following keys
 ;;
 ;; :latitude - float
@@ -26,8 +20,37 @@
 ;; process response errors
 ;; add spec to responses
 
+(defprotocol Query
+  "THe geocoding query protocol"
+  (reverse? [this] "Returns true in case of a reverse geocoding query"))
+
+(extend-type String
+  Query
+  (reverse? [this]
+    (boolean (re-matches #"^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$" this))))
+
+(defn- encode-query
+  [query]
+  (URLEncoder/encode query "UTF-8"))
+
+(defn url
+  [query]
+  (str
+   "http://maps.googleapis.com/maps/api/geocode/json?"
+   (if (reverse? query) "latlng=" "address=")
+   (encode-query query)))
+
+(declare parse-response)
+
+(defn search
+  "Performs a geocoding search"
+  [query]
+  (println "url" (url query))
+  (let [response (http/get (url query))]
+    (parse-response response)))
+
 (defn filter-type
-  "Filters data by type"
+  "Filters response data by type"
   [data path types]
   {:pre [(map? data) (coll? path) (coll? types)]}
   (letfn [(pred [m] (some (set (:types m)) (map name types)))]
@@ -43,6 +66,7 @@
       (get key)))
 
 (defn- result
+  "Standartizes the result"
   [data]
   {:latitude (get-in data [:geometry :location :lat])
    :longitude (get-in data [:geometry :location :lng])
@@ -62,9 +86,3 @@
 (defn- parse-response
   [{:keys [body]}]
   (results (json/parse-string body true)))
-
-(defn search
-  "Performs a geocoding search"
-  [query]
-  (let [response (http/get (str url (encode-query query)))]
-    (parse-response response)))
