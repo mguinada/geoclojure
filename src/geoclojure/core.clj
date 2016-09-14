@@ -1,6 +1,7 @@
 (ns geoclojure.core
-  (:require [clj-http.lite.client :as http]
-            [cheshire.core :as json])
+  (:require [clojure.string :as string]
+            [cheshire.core :as json]
+            [clj-http.lite.client :as http])
   (:import [java.net URLEncoder]))
 
 ;; result always has the following keys
@@ -21,31 +22,38 @@
 ;; add spec to responses
 
 (defprotocol Query
-  "THe geocoding query protocol"
-  (reverse? [this] "Returns true in case of a reverse geocoding query"))
-
-(extend-type String
-  Query
-  (reverse? [this]
-    (boolean (re-matches #"^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$" this))))
+  "The geocoding query protocol"
+  (reverse? [this] "Returns true in case of a reverse geocoding query")
+  (encode [this] "Encodes the query for HTTP"))
 
 (defn- encode-query
   [query]
   (URLEncoder/encode query "UTF-8"))
+
+(extend-protocol Query
+  String
+  (reverse? [this]
+    (boolean (re-matches #"^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$" this)))
+  (encode [this]
+    (encode-query this))
+  clojure.lang.IPersistentCollection
+  (reverse? [this]
+    (and (= 2 (count this)) (every? float? this)))
+  (encode [this]
+    (encode-query (string/join "," this))))
 
 (defn url
   [query]
   (str
    "http://maps.googleapis.com/maps/api/geocode/json?"
    (if (reverse? query) "latlng=" "address=")
-   (encode-query query)))
+   (encode query)))
 
 (declare parse-response)
 
 (defn search
   "Performs a geocoding search"
   [query]
-  (println "url" (url query))
   (let [response (http/get (url query))]
     (parse-response response)))
 
@@ -66,18 +74,28 @@
       (get key)))
 
 (defn- result
-  "Standartizes the result"
+  "Produce a geoclojure result"
   [data]
-  {:latitude (get-in data [:geometry :location :lat])
-   :longitude (get-in data [:geometry :location :lng])
-   :coordinates [(get-in data [:geometry :location :lat]) (get-in data [:geometry :location :lng])]
-   :address (get-in data [:formatted_address])
-   :city (get-in-type data [:address_components] [:locality :sublocality :administrative_area_level_3 :administrative_area_level_2] :long_name)
-   :state (get-in-type data [:address_components] [:administrative_area_level_1] :long_name)
-   :state-code (get-in-type data [:address_components] [:administrative_area_level_1] :short_name)
-   :postal-code (get-in-type data [:address_components] [:postal_code] :long_name)
-   :country (get-in-type data [:address_components] [:country] :long_name)
-   :country-code (get-in-type data [:address_components] [:country] :short_name)})
+  {:latitude
+   (get-in data [:geometry :location :lat])
+   :longitude
+   (get-in data [:geometry :location :lng])
+   :coordinates
+   [(get-in data [:geometry :location :lat]) (get-in data [:geometry :location :lng])]
+   :address
+   (get-in data [:formatted_address])
+   :city
+   (get-in-type data [:address_components] [:locality :sublocality :administrative_area_level_3 :administrative_area_level_2] :long_name)
+   :state
+   (get-in-type data [:address_components] [:administrative_area_level_1] :long_name)
+   :state-code
+   (get-in-type data [:address_components] [:administrative_area_level_1] :short_name)
+   :postal-code
+   (get-in-type data [:address_components] [:postal_code] :long_name)
+   :country
+   (get-in-type data [:address_components] [:country] :long_name)
+   :country-code
+   (get-in-type data [:address_components] [:country] :short_name)})
 
 (defn- results
   [{:keys [results]}]
