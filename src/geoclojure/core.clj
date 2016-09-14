@@ -4,26 +4,9 @@
             [clj-http.lite.client :as http])
   (:import [java.net URLEncoder]))
 
-;; result always has the following keys
-;;
-;; :latitude - float
-;; :longitude - float
-;; :coordinates - array of the above two in the form of [lat,lon]
-;; :address - string
-;; :city - string
-;; :state - string
-;; :state-code - string
-;; :postal-code - string
-;; :country - string
-;; :country-code - string
-
-;; TODO:
-;; process response errors
-;; add spec to responses
-
 (defprotocol Query
-  "The geocoding query protocol"
-  (reverse? [this] "Returns true in case of a reverse geocoding query")
+  "Geocoding query protocol"
+  (reverse? [this] "Returns true for reverse geocoding queries")
   (encode [this] "Encodes the query for HTTP"))
 
 (defn- encode-query
@@ -43,6 +26,7 @@
     (encode-query (string/join "," this))))
 
 (defn url
+  "Assemble a url to query google geocoding service"
   [query]
   (str
    "http://maps.googleapis.com/maps/api/geocode/json?"
@@ -54,8 +38,12 @@
 (defn search
   "Performs a geocoding search"
   [query]
-  (let [response (http/get (url query))]
-    (parse-response response)))
+  (let [response (http/get (url query)) status (get response "status")]
+    (if-not (contains? (set (range 400 600)) status)
+      (parse-response response)
+      (throw (ex-info
+              (str "HTTP Error " status)
+              {:status status :message (parse-response response)})))))
 
 (defn filter-type
   "Filters response data by type"
@@ -74,7 +62,19 @@
       (get key)))
 
 (defn- result
-  "Produce a geoclojure result"
+  "Produce a geoclojure result map.
+   Result maps in geoclojure always returns with the following keys:
+
+   :latitude - float
+   :longitude - float
+   :coordinates - array of the above two in the form of [lat, lng]
+   :address - string
+   :city - string
+   :state - string
+   :state-code - string
+   :postal-code - string
+   :country - string
+   :country-code - string"
   [data]
   {:latitude
    (get-in data [:geometry :location :lat])

@@ -41,7 +41,10 @@
             :postal-code "1100-083"
             :latitude 38.7079236
             :country "Portugal"}
-           (first (geo/search "38.7075614, -9.137430199999999"))))))
+           (first (geo/search "38.7075614, -9.137430199999999")))))
+  (testing "error handling"
+    (testing "HTTP errors"
+      (is (thrown? clojure.lang.ExceptionInfo (geo/search ""))))))
 
 (deftest filter-type
   (let [response {:components [{:value "Praça do Comércio" :types ["route"]}
