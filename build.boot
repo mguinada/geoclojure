@@ -4,6 +4,7 @@
                  [adzerk/boot-test "1.1.1" :scope "test"]
                  [metosin/boot-alt-test "0.1.2" :scope "test"]
                  [org.senatehouse/expect-call "0.1.0" :scope "test"]
+                 [se.haleby/stub-http "0.2.1" :scope "test"]
                  [clj-http-lite "0.3.0" :scope "compile"]
                  [cheshire "5.6.3" :scope "compile"]])
 
