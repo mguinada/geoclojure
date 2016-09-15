@@ -4,46 +4,48 @@
             [clj-http.lite.client :as http])
   (:import [java.net URLEncoder]))
 
-(defprotocol Query
-  "Geocoding query protocol"
-  (reverse? [this] "Returns true for reverse geocoding queries")
-  (encode [this] "Encodes the query for HTTP"))
-
-(defn- encode-query
+(defn- httpq
+  "Encode a query for HTTP"
   [query]
   (URLEncoder/encode query "UTF-8"))
 
+(defprotocol Query
+  "Geocoding query"
+  (reverse? [query] "Returns true for reverse geocoding queries")
+  (encode [query] "Encode for HTTP"))
+
 (extend-protocol Query
   String
-  (reverse? [this]
-    (boolean (re-matches #"^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$" this)))
-  (encode [this]
-    (encode-query this))
+  (reverse? [query]
+    (boolean
+     (re-matches #"^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$" query)))
+  (encode [query]
+    (httpq query))
   clojure.lang.IPersistentCollection
-  (reverse? [this]
-    (and (= 2 (count this)) (every? float? this)))
-  (encode [this]
-    (encode-query (string/join "," this))))
+  (reverse? [query]
+    (and (= 2 (count query)) (every? float? query)))
+  (encode [query]
+    (httpq (string/join "," query))))
 
 (defn url
-  "Assemble a url to query google geocoding service"
+  "Assemble an uri to query google geocoding service"
   [query]
   (str
    "http://maps.googleapis.com/maps/api/geocode/json?"
    (if (reverse? query) "latlng=" "address=")
    (encode query)))
 
-(declare parse-response)
+(declare response-parser)
 
 (defn search
   "Performs a geocoding search"
   [query]
   (let [response (http/get (url query)) status (get response "status")]
     (if-not (contains? (set (range 400 600)) status)
-      (parse-response response)
+      (response-parser response)
       (throw (ex-info
               (str "HTTP Error " status)
-              {:status status :message (parse-response response)})))))
+              {:status status :message (response-parser response)})))))
 
 (defn filter-type
   "Filters response data by type"
@@ -54,16 +56,16 @@
          (filter pred)
          (vec))))
 
-(defn get-in-type
-  "Gets the first instance of data of a given type"
+(defn- get-in-type
+  "Gets the first instance of data that of in the universe of types"
   [data path types key]
   (-> (filter-type data path types)
       (first)
       (get key)))
 
 (defn- result
-  "Produce a geoclojure result map.
-   Result maps in geoclojure always returns with the following keys:
+  "Produces a geoclojure result map.
+   Geoclojure result maps in geoclojure always contontain the following keys:
 
    :latitude - float
    :longitude - float
@@ -101,6 +103,6 @@
   [{:keys [results]}]
   (mapv result results))
 
-(defn- parse-response
+(defn- response-parser
   [{:keys [body]}]
   (results (json/parse-string body true)))

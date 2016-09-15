@@ -15,7 +15,7 @@
     (is (= "38.7079236%2C+-9.1357347" (is (geo/encode "38.7079236, -9.1357347"))))
     (is (= "38.7079236%2C-9.1357347" (is (geo/encode ["38.7079236", "-9.1357347"]))))
     (is (= "Pra%C3%A7a+do+Com%C3%A9rcio%2C1100-148+Lisboa%2CPortugal"
-           (is (geo/encode ["Praça do Comércio" "1100-148 Lisboa", "Portugal"]))))))
+           (is (geo/encode ["Praça do Comércio" "1100-148 Lisboa" "Portugal"]))))))
 
 (deftest search
   (testing "geocoding"
