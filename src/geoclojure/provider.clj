@@ -6,7 +6,7 @@
   "A protocol that tells `geoclojure.core` how to interact with geocoding service providers."
   (uri [this query]
     "A ready to use URI for querying the service")
-  (results [this data]
+  (results [this query data]
     "Returns the query results.
      Geoclojure result maps always contain the following keys:
 
@@ -24,3 +24,7 @@
 (defn parse-json
   [json]
   (json/parse-string json true))
+
+(defn http-error?
+  [status]
+  (contains? (set (range 400 600)) status))
