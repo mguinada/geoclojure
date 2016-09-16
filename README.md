@@ -8,9 +8,17 @@ Not ready for use
 
 # TODO
 
-* handle service level errors
+general
+
 * do logging
 * add clojure.spec to responses
+
+for  providers:
+
+* add supprt for api keys
+* provider configuration (maybe via edn)
+* option to use ssl
+* handle service level errors
 
 ## License
 
