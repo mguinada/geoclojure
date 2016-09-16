@@ -1,0 +1,494 @@
+{
+    "results": [{
+	"address_components": [{
+	    "long_name": "MB",
+	    "short_name": "MB",
+	    "types": ["street_number"]
+	}, {
+	    "long_name": "Praça do Comércio",
+	    "short_name": "Praça do Comércio",
+	    "types": ["route"]
+	}, {
+	    "long_name": "Lisboa",
+	    "short_name": "Lisboa",
+	    "types": ["locality", "political"]
+	}, {
+	    "long_name": "São Nicolau",
+	    "short_name": "São Nicolau",
+	    "types": ["administrative_area_level_3", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_2", "political"]
+	}, {
+	    "long_name": "Lisboa",
+	    "short_name": "Lisboa",
+	    "types": ["administrative_area_level_1", "political"]
+	}, {
+	    "long_name": "Portugal",
+	    "short_name": "PT",
+	    "types": ["country", "political"]
+	}, {
+	    "long_name": "1100-083",
+	    "short_name": "1100-083",
+	    "types": ["postal_code"]
+	}, {
+	    "long_name": "1100",
+	    "short_name": "1100",
+	    "types": ["postal_code", "postal_code_prefix"]
+	}],
+	"formatted_address": "Praça do Comércio MB, 1100-083 Lisboa, Portugal",
+	"geometry": {
+	    "location": {
+		"lat": 38.7079236,
+		"lng": -9.1357347
+	    },
+	    "location_type": "ROOFTOP",
+	    "viewport": {
+		"northeast": {
+		    "lat": 38.7092725802915,
+		    "lng": -9.134385719708499
+		},
+		"southwest": {
+		    "lat": 38.7065746197085,
+		    "lng": -9.137083680291502
+		}
+	    }
+	},
+	"place_id": "ChIJP2OuGXo0GQ0RqLlMNww9FU4",
+	"types": ["street_address"]
+    }, {
+	"address_components": [{
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["locality", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_1", "political"]
+	}, {
+	    "long_name": "Portugal",
+	    "short_name": "PT",
+	    "types": ["country", "political"]
+	}],
+	"formatted_address": "Lisbon, Portugal",
+	"geometry": {
+	    "bounds": {
+		"northeast": {
+		    "lat": 38.7958537,
+		    "lng": -9.090572
+		},
+		"southwest": {
+		    "lat": 38.6913993,
+		    "lng": -9.229835599999999
+		}
+	    },
+	    "location": {
+		"lat": 38.7222524,
+		"lng": -9.1393366
+	    },
+	    "location_type": "APPROXIMATE",
+	    "viewport": {
+		"northeast": {
+		    "lat": 38.7958537,
+		    "lng": -9.090572
+		},
+		"southwest": {
+		    "lat": 38.6913993,
+		    "lng": -9.229835599999999
+		}
+	    }
+	},
+	"place_id": "ChIJO_PkYRozGQ0R0DaQ5L3rAAQ",
+	"types": ["locality", "political"]
+    }, {
+	"address_components": [{
+	    "long_name": "1100-039",
+	    "short_name": "1100-039",
+	    "types": ["postal_code"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["locality", "political"]
+	}, {
+	    "long_name": "São Nicolau",
+	    "short_name": "São Nicolau",
+	    "types": ["administrative_area_level_3", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_2", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_1", "political"]
+	}, {
+	    "long_name": "Portugal",
+	    "short_name": "PT",
+	    "types": ["country", "political"]
+	}],
+	"formatted_address": "1100-039 Lisbon, Portugal",
+	"geometry": {
+	    "bounds": {
+		"northeast": {
+		    "lat": 38.7083152,
+		    "lng": -9.137313499999999
+		},
+		"southwest": {
+		    "lat": 38.7069077,
+		    "lng": -9.138697199999999
+		}
+	    },
+	    "location": {
+		"lat": 38.7079174,
+		"lng": -9.1385431
+	    },
+	    "location_type": "APPROXIMATE",
+	    "viewport": {
+		"northeast": {
+		    "lat": 38.7089604302915,
+		    "lng": -9.136656369708497
+		},
+		"southwest": {
+		    "lat": 38.7062624697085,
+		    "lng": -9.139354330291502
+		}
+	    }
+	},
+	"place_id": "ChIJ1RF83ns0GQ0RwraG0rX44Qg",
+	"types": ["postal_code"]
+    }, {
+	"address_components": [{
+	    "long_name": "1100-038",
+	    "short_name": "1100-038",
+	    "types": ["postal_code"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["locality", "political"]
+	}, {
+	    "long_name": "São Nicolau",
+	    "short_name": "São Nicolau",
+	    "types": ["administrative_area_level_3", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_2", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_1", "political"]
+	}, {
+	    "long_name": "Portugal",
+	    "short_name": "PT",
+	    "types": ["country", "political"]
+	}],
+	"formatted_address": "1100-038 Lisbon, Portugal",
+	"geometry": {
+	    "bounds": {
+		"northeast": {
+		    "lat": 38.71491779999999,
+		    "lng": -9.135930199999999
+		},
+		"southwest": {
+		    "lat": 38.7058475,
+		    "lng": -9.1400807
+		}
+	    },
+	    "location": {
+		"lat": 38.7076116,
+		"lng": -9.1396961
+	    },
+	    "location_type": "APPROXIMATE",
+	    "viewport": {
+		"northeast": {
+		    "lat": 38.7084303302915,
+		    "lng": -9.135930199999999
+		},
+		"southwest": {
+		    "lat": 38.7057323697085,
+		    "lng": -9.1400807
+		}
+	    }
+	},
+	"place_id": "ChIJOzQu-ns0GQ0RLdBckO2NJ7c",
+	"types": ["postal_code"]
+    }, {
+	"address_components": [{
+	    "long_name": "1100-148",
+	    "short_name": "1100-148",
+	    "types": ["postal_code"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["locality", "political"]
+	}, {
+	    "long_name": "São Nicolau",
+	    "short_name": "São Nicolau",
+	    "types": ["administrative_area_level_3", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_2", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_1", "political"]
+	}, {
+	    "long_name": "Portugal",
+	    "short_name": "PT",
+	    "types": ["country", "political"]
+	}],
+	"formatted_address": "1100-148 Lisbon, Portugal",
+	"geometry": {
+	    "bounds": {
+		"northeast": {
+		    "lat": 38.7097225,
+		    "lng": -9.1317798
+		},
+		"southwest": {
+		    "lat": 38.7058475,
+		    "lng": -9.1400807
+		}
+	    },
+	    "location": {
+		"lat": 38.707424,
+		"lng": -9.1373131
+	    },
+	    "location_type": "APPROXIMATE",
+	    "viewport": {
+		"northeast": {
+		    "lat": 38.7097225,
+		    "lng": -9.1345467
+		},
+		"southwest": {
+		    "lat": 38.7058475,
+		    "lng": -9.1400807
+		}
+	    }
+	},
+	"place_id": "ChIJA1M1M3o0GQ0RWT_oiOO36Rs",
+	"types": ["postal_code"]
+    }, {
+	"address_components": [{
+	    "long_name": "São Nicolau",
+	    "short_name": "São Nicolau",
+	    "types": ["administrative_area_level_3", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_2", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_1", "political"]
+	}, {
+	    "long_name": "Portugal",
+	    "short_name": "PT",
+	    "types": ["country", "political"]
+	}, {
+	    "long_name": "1100",
+	    "short_name": "1100",
+	    "types": ["postal_code", "postal_code_prefix"]
+	}],
+	"formatted_address": "São Nicolau, 1100, Portugal",
+	"geometry": {
+	    "bounds": {
+		"northeast": {
+		    "lat": 38.7135717,
+		    "lng": -9.135408199999999
+		},
+		"southwest": {
+		    "lat": 38.7055072,
+		    "lng": -9.142068799999999
+		}
+	    },
+	    "location": {
+		"lat": 38.7089102,
+		"lng": -9.138005399999999
+	    },
+	    "location_type": "APPROXIMATE",
+	    "viewport": {
+		"northeast": {
+		    "lat": 38.7135717,
+		    "lng": -9.135408199999999
+		},
+		"southwest": {
+		    "lat": 38.7055072,
+		    "lng": -9.142068799999999
+		}
+	    }
+	},
+	"place_id": "ChIJ35-JOno0GQ0RwggI0r7rACY",
+	"types": ["administrative_area_level_3", "political"]
+    }, {
+	"address_components": [{
+	    "long_name": "1100",
+	    "short_name": "1100",
+	    "types": ["postal_code", "postal_code_prefix"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["locality", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_1", "political"]
+	}, {
+	    "long_name": "Portugal",
+	    "short_name": "PT",
+	    "types": ["country", "political"]
+	}],
+	"formatted_address": "1100 Lisbon, Portugal",
+	"geometry": {
+	    "bounds": {
+		"northeast": {
+		    "lat": 38.7213348,
+		    "lng": -9.1153523
+		},
+		"southwest": {
+		    "lat": 38.7055042,
+		    "lng": -9.1420709
+		}
+	    },
+	    "location": {
+		"lat": 38.711347,
+		"lng": -9.131779699999999
+	    },
+	    "location_type": "APPROXIMATE",
+	    "viewport": {
+		"northeast": {
+		    "lat": 38.7213348,
+		    "lng": -9.1153523
+		},
+		"southwest": {
+		    "lat": 38.7055042,
+		    "lng": -9.1420709
+		}
+	    }
+	},
+	"place_id": "ChIJywaJ43U0GQ0RkJw7DsHrABw",
+	"types": ["postal_code", "postal_code_prefix"]
+    }, {
+	"address_components": [{
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_2", "political"]
+	}, {
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_1", "political"]
+	}, {
+	    "long_name": "Portugal",
+	    "short_name": "PT",
+	    "types": ["country", "political"]
+	}],
+	"formatted_address": "Lisbon, Portugal",
+	"geometry": {
+	    "bounds": {
+		"northeast": {
+		    "lat": 38.7958537,
+		    "lng": -9.090572
+		},
+		"southwest": {
+		    "lat": 38.6913993,
+		    "lng": -9.229835599999999
+		}
+	    },
+	    "location": {
+		"lat": 38.7222986,
+		"lng": -9.1393188
+	    },
+	    "location_type": "APPROXIMATE",
+	    "viewport": {
+		"northeast": {
+		    "lat": 38.7958537,
+		    "lng": -9.090572
+		},
+		"southwest": {
+		    "lat": 38.6913993,
+		    "lng": -9.229835599999999
+		}
+	    }
+	},
+	"place_id": "ChIJMabWPRAzGQ0RRFqNEqmj6AI",
+	"types": ["administrative_area_level_2", "political"]
+    }, {
+	"address_components": [{
+	    "long_name": "Lisbon",
+	    "short_name": "Lisbon",
+	    "types": ["administrative_area_level_1", "political"]
+	}, {
+	    "long_name": "Portugal",
+	    "short_name": "PT",
+	    "types": ["country", "political"]
+	}],
+	"formatted_address": "Lisbon, Portugal",
+	"geometry": {
+	    "bounds": {
+		"northeast": {
+		    "lat": 39.3177286,
+		    "lng": -8.781920899999999
+		},
+		"southwest": {
+		    "lat": 38.6731603,
+		    "lng": -9.5005267
+		}
+	    },
+	    "location": {
+		"lat": 38.7223263,
+		"lng": -9.1392714
+	    },
+	    "location_type": "APPROXIMATE",
+	    "viewport": {
+		"northeast": {
+		    "lat": 39.3177286,
+		    "lng": -8.781920899999999
+		},
+		"southwest": {
+		    "lat": 38.6731603,
+		    "lng": -9.5005267
+		}
+	    }
+	},
+	"place_id": "ChIJWxIr4ajVGA0RwCyQ5L3rAAM",
+	"types": ["administrative_area_level_1", "political"]
+    }, {
+	"address_components": [{
+	    "long_name": "Portugal",
+	    "short_name": "PT",
+	    "types": ["country", "political"]
+	}],
+	"formatted_address": "Portugal",
+	"geometry": {
+	    "bounds": {
+		"northeast": {
+		    "lat": 42.1540125,
+		    "lng": -6.1902091
+		},
+		"southwest": {
+		    "lat": 32.40374,
+		    "lng": -31.2753297
+		}
+	    },
+	    "location": {
+		"lat": 39.39987199999999,
+		"lng": -8.224454
+	    },
+	    "location_type": "APPROXIMATE",
+	    "viewport": {
+		"northeast": {
+		    "lat": 42.1540125,
+		    "lng": -6.1902091
+		},
+		"southwest": {
+		    "lat": 36.96016940000001,
+		    "lng": -9.5171107
+		}
+	    }
+	},
+	"place_id": "ChIJ1SZCvy0kMgsRQfBOHAlLuCo",
+	"types": ["country", "political"]
+    }],
+    "status": "OK"
+}

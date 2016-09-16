@@ -1,0 +1,60 @@
+{
+    "results": [{
+        "address_components": [{
+            "long_name": "Praça do Comércio",
+            "short_name": "Praça do Comércio",
+            "types": ["route"]
+        }, {
+            "long_name": "Lisboa",
+            "short_name": "Lisboa",
+            "types": ["locality", "political"]
+        }, {
+            "long_name": "Lisboa",
+            "short_name": "Lisboa",
+            "types": ["administrative_area_level_1", "political"]
+        }, {
+            "long_name": "Portugal",
+            "short_name": "PT",
+            "types": ["country", "political"]
+        }, {
+            "long_name": "1100-148",
+            "short_name": "1100-148",
+            "types": ["postal_code"]
+        }, {
+            "long_name": "1100",
+            "short_name": "1100",
+            "types": ["postal_code", "postal_code_prefix"]
+        }],
+        "formatted_address": "Praça do Comércio, 1100-148 Lisboa, Portugal",
+        "geometry": {
+            "bounds": {
+                "northeast": {
+                    "lat": 38.7085106,
+                    "lng": -9.135534099999999
+                },
+                "southwest": {
+                    "lat": 38.7066754,
+                    "lng": -9.1375753
+                }
+            },
+            "location": {
+                "lat": 38.7075614,
+                "lng": -9.137430199999999
+            },
+            "location_type": "GEOMETRIC_CENTER",
+            "viewport": {
+                "northeast": {
+                    "lat": 38.70894198029149,
+                    "lng": -9.135205719708498
+                },
+                "southwest": {
+                    "lat": 38.7062440197085,
+                    "lng": -9.137903680291503
+                }
+            }
+        },
+        "place_id": "ChIJ3WyNOno0GQ0RtuJ6FHiwL4Y",
+        "types": ["route"]
+    }],
+    "status": "OK"
+}
