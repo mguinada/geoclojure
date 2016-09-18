@@ -9,12 +9,5 @@
   ([query]
    (search g/provider query))
   ([provider query]
-   (let [response (http/get (p/uri provider query) {:throw-exceptions false})
-         status (:status response)]
-     (if-not (p/http-error? status)
-       (p/results provider query response)
-       (throw (ex-info
-               (str "HTTP Error " status)
-               {:type :http
-                :status status
-                :message (p/parse-json (:body response))}))))))
+   (let [response (http/get (p/uri provider query) {:throw-exceptions false})]
+     (p/results provider query response))))

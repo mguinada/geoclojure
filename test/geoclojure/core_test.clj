@@ -12,17 +12,20 @@
       (str
        "http://provider.example.org/gcode?q="
        (URLEncoder/encode q "UTF-8")))
-    (results [_ _ _]
-      [{:address "Address",
-        :city "City",
-        :coordinates [9.99 -9.99],
-        :country "Country",
-        :country-code "XY",
-        :latitude 9.99
-        :longitude -9.99
-        :postal-code "1000",
-        :state "State",
-        :state-code "ST"}])))
+    (results [_ _ r]
+      (if-not (p/http-error? (:status r))
+        [{:address "Address",
+          :city "City",
+          :coordinates [9.99 -9.99],
+          :country "Country",
+          :country-code "XY",
+          :latitude 9.99
+          :longitude -9.99
+          :postal-code "1000",
+          :state "State",
+          :state-code "ST"}]
+        (throw (ex-info
+                (str "Provider Error " (:status r)) {}))))))
 
 (deftest search
   (testing "geocoding"
@@ -59,5 +62,5 @@
        (http/get ["http://provider.example.org/gcode?q=" _] {:status 400})
        (is (thrown-with-msg?
             clojure.lang.ExceptionInfo
-            #"HTTP Error 400"
+            #"Provider Error 400"
             (geo/search provider "")))))))

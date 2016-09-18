@@ -12,10 +12,10 @@
                                {:value "1100" :types ["postal_code" "postal_code_prefix"]}]}]
     (is (= [{:value "1100-148" :types ["postal_code"]}
             {:value "1100" :types ["postal_code" "postal_code_prefix"]}]
-           (g/filter-type response [:components] ["postal_code"])))
+           (g/filter-type (:components response) ["postal_code"])))
     (is (= [{:value "Praça do Comércio" :types ["route"]}
             {:value "Portugal" :types ["country" "political"]}]
-           (g/filter-type response [:components] [:country :route])))))
+           (g/filter-type (:components response) [:country :route])))))
 
 (deftest search
   (testing "geocoding"
@@ -46,5 +46,5 @@
     (testing "HTTP errors"
       (is (thrown-with-msg?
            clojure.lang.ExceptionInfo
-           #"HTTP Error 400"
+           #"Provider Error INVALID_REQUEST"
            (geo/search g/provider ""))))))
