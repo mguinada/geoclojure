@@ -8,20 +8,22 @@
   (reverse? [query] "Returns true for reverse geocoding queries")
   (encode [query] "Encode for HTTP"))
 
-(defn- httpq
+(defn- http-enc
   "Encode a query for HTTP"
   [query]
   (URLEncoder/encode query "UTF-8"))
 
 (extend-protocol Query
   String
-  (reverse? [query]
+  (reverse? [q]
     (boolean
-     (re-matches #"^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$" query)))
-  (encode [query]
-    (httpq query))
+     (re-matches #"^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$" q)))
+  (encode [q]
+    (http-enc q))
   clojure.lang.IPersistentCollection
-  (reverse? [query]
-    (and (= 2 (count query)) (every? float? query)))
-  (encode [query]
-    (httpq (string/join "," query))))
+  (reverse? [q]
+    (and (not (set? q))
+         (= 2 (count q))
+         (every? float? q)))
+  (encode [q]
+    (http-enc (string/join "," q))))

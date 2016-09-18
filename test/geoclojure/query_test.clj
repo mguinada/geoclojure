@@ -9,6 +9,8 @@
   (testing "query as collection"
     (is (q/reverse? [38.7075614 -9.137430199999999]))
     (is (not (q/reverse? ["Praça do Comércio" "1100-148 Lisboa", "Portugal"]))))
+  (testing "sets can't be reverse queries"
+    (is (not (q/reverse? #{38.7075614 -9.137430199999999}))))
   (testing "query encoding"
     (is (= "" (is (q/encode ""))))
     (is (= "" (is (q/encode []))))
