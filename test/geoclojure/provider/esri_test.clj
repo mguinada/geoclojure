@@ -17,14 +17,19 @@
             :state-code "Lisboa"}
            (first (geo/search esri/provider "Praça do Comércio, Lisbon")))))
   (testing "reverse geocoding"
-    (is (= {:address "Praça do Comércio, 1100-148, Lisboa",
+    (is (= {:address "Rua Áurea 2, 1100-063, Lisboa",
             :city "Lisboa",
-            :coordinates [38.70817937100048 -9.137347199999567],
+            :coordinates [38.70830214032869 -9.137608532284377],
             :country "PRT",
             :country-code "PRT",
-            :latitude 38.70817937100048,
-            :longitude -9.137347199999567,
-            :postal-code "1100",
+            :latitude 38.70830214032869,
+            :longitude -9.137608532284377,
+            :postal-code "1100-063",
             :state "Lisboa",
             :state-code "Lisboa"}
-           (first (geo/search esri/provider "38.708179371000483, -9.137347199999567"))))))
+           (first (geo/search esri/provider "38.70817937100048, -9.137347199999567")))))
+  (testing "Error handling"
+    (is (thrown-with-msg?
+         clojure.lang.ExceptionInfo
+         #"Provider Error 400"
+         (geo/search esri/provider "-9.137347199999567, 38.70817937100048")))))

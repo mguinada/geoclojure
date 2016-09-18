@@ -12,7 +12,7 @@
       (str
        "http://provider.example.org/gcode?q="
        (URLEncoder/encode q "UTF-8")))
-    (results [_ _]
+    (results [_ _ _]
       [{:address "Address",
         :city "City",
         :coordinates [9.99 -9.99],

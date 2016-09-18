@@ -13,7 +13,7 @@
        "http://maps.googleapis.com/maps/api/geocode/json?"
        (if (q/reverse? q) "latlng=" "address=")
        (q/encode q)))
-    (results [_ data]
+    (results [_ _ data]
       (results* (p/parse-json (:body data))))))
 
 (defn filter-type

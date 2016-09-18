@@ -15,11 +15,11 @@
       (str
        url
        (if (q/reverse? q) "reverseGeocode" "findAddressCandidates")
-       "?f=json&outFields=*"
-       (if (q/reverse? q) (throw (RuntimeException. "Unimplemented")) "&address=")
-       (q/encode q)))
-    (results [_ data]
-      (results* (p/parse-json (:body data))))))
+       (if (q/reverse? q) "?location=" "?address=")
+       (q/encode (if (q/reverse? q) (p/reverse-coords q) q))
+       "&f=pjson&outFields=*"))
+    (results [_ q data]
+      (results* q (p/parse-json (:body data))))))
 
 (defn- result
   [data]
@@ -44,6 +44,35 @@
    :country-code
    (get-in data [:attributes :Country])})
 
+(defn- reverse-result
+  [data]
+  {:latitude
+   (get-in data [:location :y])
+   :longitude
+   (get-in data [:location :x])
+   :coordinates
+   [(get-in data [:location :y]) (get-in data [:location :x])]
+   :address
+   (get-in data [:address :Match_addr])
+   :city
+   (get-in data [:address :City])
+   :state
+   (get-in data [:address :Region])
+   :state-code
+   (get-in data [:address :Region])
+   :postal-code
+   (get-in data [:address :Postal])
+   :country
+   (get-in data [:address :CountryCode])
+   :country-code
+   (get-in data [:address :CountryCode])})
+
 (defn- results*
-  [{:keys [candidates]}]
-  (mapv result candidates))
+  [q {:keys [candidates] {:keys [code message]} :error :as response}]
+  (if-not (p/http-error? code)
+    (if (q/reverse? q) [(reverse-result response)] (mapv result candidates))
+    (throw (ex-info
+            (str "Provider Error " code)
+            {:type :provider
+             :status code
+             :message message}))))
