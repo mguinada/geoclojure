@@ -12,6 +12,7 @@ general
 
 * do logging
 * add clojure.spec to responses
+* cache
 
 for  providers:
 

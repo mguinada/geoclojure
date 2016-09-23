@@ -1,11 +1,13 @@
 (set-env!
+ :source-paths #{"src" "resources" "test"}
  :dependencies '[[org.clojure/clojure "1.9.0-alpha10" :scope "provided"]
                  [adzerk/boot-reload "0.4.8" :scope "test"]
                  [adzerk/boot-test "1.1.1" :scope "test"]
                  [metosin/boot-alt-test "0.1.2" :scope "test"]
                  [org.senatehouse/expect-call "0.1.0" :scope "test"]
                  [clj-http-lite "0.3.0" :scope "compile"]
-                 [cheshire "5.6.3" :scope "compile"]])
+                 [cheshire "5.6.3" :scope "compile"]
+                 [io.aviso/config "0.2.1" :scope "compile"]])
 
 (require
  '[boot.task.built-in          :refer [aot]]

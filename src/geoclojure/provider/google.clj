@@ -1,6 +1,8 @@
 (ns geoclojure.provider.google
   "A Google geocoding provider"
-  (:require [geoclojure
+  (:require [io.aviso.config :as cfg]
+            [clojure.spec :as s]
+            [geoclojure
              [query :as q]
              [provider :as p]]))
 
@@ -11,15 +13,18 @@
    "REQUEST_DENIED" {:type :request-denied :msg "Request denied"}
    "INVALID_REQUEST" {:type :invalid-request :msg "Invalid request"}})
 
-(def provider
-  (reify p/Provider
-    (uri [_ q]
-      (str
-       "http://maps.googleapis.com/maps/api/geocode/json?"
-       (if (q/reverse? q) "latlng=" "address=")
-       (q/encode q)))
-    (results [_ _ data]
-      (results* (p/parse-json (:body data))))))
+(defrecord Provider [key]
+  cfg/Configurable
+  (configure [this cfg]
+    (merge this cfg))
+  p/Provider
+  (uri [_ q]
+    (str
+     "http://maps.googleapis.com/maps/api/geocode/json?"
+     (if (q/reverse? q) "latlng=" "address=")
+     (q/encode q)))
+  (results [_ _ data]
+    (results* (p/parse-json (:body data)))))
 
 (defn filter-type
   "Filters data by type"
