@@ -8,15 +8,17 @@
 
 (declare results*)
 
+(defn- config
+  ([] (config {}))
+  ([opts]
+   (cfg/assemble-configuration {:profiles [:google] :overrides opts})))
+
 (def ^:private errors
   {"OVER_QUERY_LIMIT" {:type :over-query-limit :msg "Query limit broken"}
    "REQUEST_DENIED" {:type :request-denied :msg "Request denied"}
    "INVALID_REQUEST" {:type :invalid-request :msg "Invalid request"}})
 
-(defrecord Provider [key]
-  cfg/Configurable
-  (configure [this cfg]
-    (merge this cfg))
+(defrecord Provider [key lang]
   p/Provider
   (uri [_ q]
     (str
@@ -25,6 +27,14 @@
      (q/encode q)))
   (results [_ _ data]
     (results* (p/parse-json (:body data)))))
+
+(defn new-provider
+  ([]
+   (new-provider {}))
+  ([opts]
+   (map->Provider (config opts))))
+
+(def provider (new-provider))
 
 (defn filter-type
   "Filters data by type"
