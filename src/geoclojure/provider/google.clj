@@ -8,10 +8,15 @@
 
 (declare results*)
 
+(s/def ::google-cfg (s/keys :req-un [::lang] :opt [::key]))
+
+(s/def ::key string?)
+(s/def ::lang #{"ar" "bg" "bn" "ca" "cs" "da" "de" "el" "en" "en-AU" "en-GB" "es" "eu" "fa" "fi" "fil" "fr" "gl" "gu" "hi" "hr" "hu" "id" "it" "iw" "ja" "kn" "ko" "lt" "lv" "ml" "mr" "nl" "no" "pl" "pt" "pt-BR" "pt-PT" "ro" "ru" "sk" "sl" "sr" "sv" "ta" "te" "th" "tl" "tr" "uk" "vi" "zh-CN" "zh-TW"})
+
 (defn- config
   ([] (config {}))
   ([opts]
-   (cfg/assemble-configuration {:profiles [:google] :overrides opts})))
+   (cfg/assemble-configuration-with-spec {:profiles [:google] :overrides opts})))
 
 (def ^:private errors
   {"OVER_QUERY_LIMIT" {:type :over-query-limit :msg "Query limit broken"}
