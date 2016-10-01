@@ -2,6 +2,8 @@
   "A protocol for the geocoding service providers"
   (:require [cheshire.core :as json]))
 
+(def providers (atom {}))
+
 (defprotocol Provider
   "A protocol that tells `geoclojure.core` how to interact with geocoding service providers."
   (uri [this query]
@@ -28,3 +30,12 @@
 (defn http-error?
   [status]
   (contains? (set (range 400 600)) status))
+
+(defn register
+  [provider]
+  (let [key (keyword (symbol (quote provider)))]
+    (swap! providers assoc key provider)))
+
+(defn registry
+  [k]
+  (get @providers k))
