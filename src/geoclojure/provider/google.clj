@@ -11,21 +11,23 @@
    "REQUEST_DENIED" {:type :request-denied :msg "Request denied"}
    "INVALID_REQUEST" {:type :invalid-request :msg "Invalid request"}})
 
-(defrecord Provider [lang]
+(defrecord Provider [key lang]
   p/Provider
   (uri [_ q]
     (str
-     "http://maps.googleapis.com/maps/api/geocode/json"
+     (if (nil? key) "http" "https")
+     "://maps.googleapis.com/maps/api/geocode/json"
      (str "?language=" lang)
+     (when-not (nil? key) (str "&key=" key))
      (if (q/reverse? q) "&latlng=" "&address=")
      (q/encode q)))
   (results [_ _ data]
     (results* (p/parse-json (:body data)))))
 
 (defn provider
-  ([] (provider "en-EN"))
-  ([lang]
-   (->Provider lang)))
+  ([] (provider {}))
+  ([{:keys [key lang] :or {key nil lang "en-EN"}}]
+   (->Provider key lang)))
 
 (defn filter-type
   "Filters data by type"
