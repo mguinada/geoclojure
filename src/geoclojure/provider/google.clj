@@ -11,15 +11,21 @@
    "REQUEST_DENIED" {:type :request-denied :msg "Request denied"}
    "INVALID_REQUEST" {:type :invalid-request :msg "Invalid request"}})
 
-(def provider
-  (reify p/Provider
-    (uri [_ q]
-      (str
-       "http://maps.googleapis.com/maps/api/geocode/json?"
-       (if (q/reverse? q) "latlng=" "address=")
-       (q/encode q)))
-    (results [_ _ data]
-      (results* (p/parse-json (:body data))))))
+(defrecord Provider [lang]
+  p/Provider
+  (uri [_ q]
+    (str
+     "http://maps.googleapis.com/maps/api/geocode/json"
+     (str "?language=" lang)
+     (if (q/reverse? q) "&latlng=" "&address=")
+     (q/encode q)))
+  (results [_ _ data]
+    (results* (p/parse-json (:body data)))))
+
+(defn provider
+  ([] (provider "en-EN"))
+  ([lang]
+   (->Provider lang)))
 
 (defn filter-type
   "Filters data by type"
